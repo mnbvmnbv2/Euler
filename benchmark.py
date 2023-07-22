@@ -3,7 +3,7 @@ import importlib
 import timeit
 
 
-def benchmark(times: int = 100):
+def benchmark(times: int = 10):
     """Run a benchmark on each solution algorithm and write time to file."""
     # get folders
     folders = [name for name in os.listdir(".") if os.path.isdir(name) and not name.startswith(".")]
