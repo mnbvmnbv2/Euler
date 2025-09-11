@@ -13,7 +13,7 @@ def get_palindromes(num: int) -> list:
     return arr
 
 
-def main() -> tuple:
+def main() -> int:
     # get all palindromes up to 999 * 999
     palindromes = get_palindromes(999 * 999)
     # sort in descending order
