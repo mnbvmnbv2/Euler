@@ -1,4 +1,4 @@
-import itertools
+import math
 
 def main(window_size: int = 13) -> int:
     num = ("73167176531330624919225119674426574742355349194934"
@@ -22,13 +22,7 @@ def main(window_size: int = 13) -> int:
     "05886116467109405077541002256983155200055935729725"
     "71636269561882670428252483600823257530420752963450")
 
-    highest = 0
+    res = 0
     for n in range(0, len(num) - window_size - 1):
-        res = 1
-        for i in [int(u) for u in num[n:n+window_size]]:
-            res = res * i
-
-        if res > highest:
-            highest = res
-
-    return highest
+        res = max(math.prod(int(u) for u in num[n:n+window_size]), res)
+    return res
