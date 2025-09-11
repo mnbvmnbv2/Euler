@@ -15,7 +15,3 @@ def main():
             break
         even_fib_numbers.append(fib_num)
     return sum(even_fib_numbers)
-
-
-if __name__ == "__main__":
-    main()
