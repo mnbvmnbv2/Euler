@@ -2,7 +2,6 @@ import numpy as np
 
 
 def is_palindrome(num: int) -> bool:
-    """Returns True if `num` is a palindrome"""
     return str(num) == str(num)[::-1]
 
 
