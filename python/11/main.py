@@ -30,8 +30,9 @@ def main(length: int = 4) -> int:
             res = np.prod(row[start:start+length])
             max_ = max(max_, res)
     for col_idx in range(20):
+        col = matrix[:,col_idx]
         for start in range(0, 17):
-            res = np.prod(matrix[::,start:start+length])
+            res = np.prod(col[start:start+length])
             max_ = max(max_, res)
     for diag in range(-16, 17):
         d = np.diagonal(matrix, offset=diag)
