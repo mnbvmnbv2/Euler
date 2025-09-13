@@ -18,18 +18,21 @@ def main():
         if path.name == "__init__.py":
             continue
         module = importlib.import_module(str(path).replace("\\", ".")[:-3])
-        
-        # benchmark
-        benchmark_times = args.benchmark
-        if benchmark_times is not None and benchmark_times > 0:
-            tot_time = timeit.timeit(module.main, number=benchmark_times)
-            avg_time = tot_time / benchmark_times
-        else:
-            avg_time = -1.0  # indicate no benchmarking was done
-        
-        ans = module.main()
 
-        results[str(path)] = (ans, avg_time)
+        try:
+            # benchmark
+            benchmark_times = args.benchmark
+            if benchmark_times is not None and benchmark_times > 0:
+                tot_time = timeit.timeit(module.main, number=benchmark_times)
+                avg_time = tot_time / benchmark_times
+            else:
+                avg_time = -1.0  # indicate no benchmarking was done
+            
+            ans = module.main()
+
+            results[str(path)] = (ans, avg_time)
+        except:
+            continue
 
     # write results as csv file
     with Path("results.csv").open("w") as f:
