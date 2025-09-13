@@ -31,7 +31,8 @@ def main():
             ans = module.main()
 
             results[str(path)] = (ans, avg_time)
-        except:
+        except Exception as e:
+            print(e)
             continue
 
     # write results as csv file
