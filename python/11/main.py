@@ -26,22 +26,21 @@ def main(length: int = 4) -> int:
     matrix = np.array([[int(x) for x in row.split()] for row in grid.split("\n")])
     # rows
     for row in matrix:
-        for start in range(0, 17):
+        for start in range(0, 20-length+1):
             res = np.prod(row[start:start+length])
             max_ = max(max_, res)
     for col_idx in range(20):
         col = matrix[:,col_idx]
-        for start in range(0, 17):
+        for start in range(0, 20-length+1):
             res = np.prod(col[start:start+length])
             max_ = max(max_, res)
-    for diag in range(-16, 17):
+    for diag in range(-20+length, 20-length+1):
         d = np.diagonal(matrix, offset=diag)
         for start in range(0, len(d)-length+1):
             res = np.prod(d[start:start+length])
             max_ = max(max_, res)
-    # solution is in this part
     matrix_flip = np.flip(matrix, axis=1)
-    for diag in range(-16, 17):
+    for diag in range(-20+length, 20-length+1):
         d = np.diagonal(matrix_flip, offset=diag)
         for start in range(0, len(d)-length+1):
             res = np.prod(d[start:start+length])
