@@ -38,6 +38,7 @@ def main(length: int = 4) -> int:
         for start in range(0, len(d)-length+1):
             res = np.prod(d[start:start+length])
             max_ = max(max_, res)
+    # solution is in this part
     matrix_flip = np.flip(matrix, axis=1)
     for diag in range(-16, 17):
         d = np.diagonal(matrix_flip, offset=diag)
