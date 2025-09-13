@@ -3,11 +3,18 @@ import importlib
 import timeit
 from pathlib import Path
 
+def extract_number(path: Path) -> int:
+    # get the first-level folder under "python" and convert to int
+    return int(path.parts[1])
 
 def main():
     args = parse_args()
     results = {}
-    for path in Path("python").rglob("*.py"):
+    paths = sorted(
+        Path("python").rglob("*.py"),
+        key=extract_number
+    )
+    for path in paths:
         if path.name == "__init__.py":
             continue
         module = importlib.import_module(str(path).replace("\\", ".")[:-3])
