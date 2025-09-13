@@ -1,19 +1,15 @@
 import math
 
-def main(limit: int = 2_000_000) -> int:
+def main_(limit: int = 2_000_000) -> int:
     sum_ = 0
-    primes = []
-    n = 1
-    while True:
-        n += 1
-        if n > limit:
-            break
+    primes = [2]
+    for n in range(3, limit, 2):
         is_prime = True
-        for i in primes:
-            if n % i == 0:
+        for prime in primes:
+            if n % prime == 0:
                 is_prime = False
                 break
-            if i > math.isqrt(n):
+            if prime > math.isqrt(n):
                 break
         if is_prime:
             sum_ += n
