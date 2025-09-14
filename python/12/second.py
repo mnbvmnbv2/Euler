@@ -1,3 +1,4 @@
+"""This uses gcd(n, n+1) = 1 trick."""
 import math
 
 import numpy as np
