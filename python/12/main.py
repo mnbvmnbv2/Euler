@@ -11,7 +11,7 @@ def get_primes(limit: int) -> int:
             primes[i*i::i] = False
     return [n for n, is_prime in enumerate(primes) if is_prime]
 
-def main(limit: int = 500) -> int:
+def main_(limit: int = 500) -> int:
     max_tri = 14_000 # hardcoded
     tri_of_max = sum(range(1, max_tri + 1))
     primes = get_primes(int(tri_of_max**0.5)+1)
