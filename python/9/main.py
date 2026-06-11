@@ -1,5 +1,3 @@
-import math
-
 def main() -> int:
     number = 1000
 
