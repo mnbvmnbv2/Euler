@@ -3,17 +3,16 @@ import importlib
 import timeit
 from pathlib import Path
 
+
 def extract_number(path: Path) -> int:
     # get the first-level folder under "python" and convert to int
     return int(path.parts[1])
 
+
 def main():
     args = parse_args()
     results = {}
-    paths = sorted(
-        Path("python").rglob("*.py"),
-        key=extract_number
-    )
+    paths = sorted(Path("python").rglob("*.py"), key=extract_number)
     for path in paths:
         if path.name == "__init__.py":
             continue
@@ -27,7 +26,7 @@ def main():
                 avg_time = tot_time / benchmark_times
             else:
                 avg_time = -1.0  # indicate no benchmarking was done
-            
+
             ans = module.main()
 
             results[str(path)] = (ans, avg_time)
@@ -40,6 +39,7 @@ def main():
         f.write("path,answer,time\n")
         for path, (ans, t) in results.items():
             f.write(f"{path},{ans},{t}\n")
+
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
@@ -54,6 +54,7 @@ def parse_args() -> argparse.Namespace:
         help="Benchmark each module N times (default N=10 if flag is present without a value).",
     )
     return parser.parse_args()
+
 
 if __name__ == "__main__":
     main()
