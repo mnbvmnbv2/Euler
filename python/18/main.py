@@ -25,6 +25,7 @@ def path(nums: list[int], path: list[int]) -> list[int]:
         # right = + row + 1
         idx += row + move
         row += 1
+    result.append(nums[idx])
     return result
 
 
@@ -39,8 +40,8 @@ def main() -> int:
     max = 0
     r = []
 
-    for i in range(2 ** (rows)):
-        binary = bin(i + 2**rows)
+    for i in range(2 ** (rows - 1)):
+        binary = bin(i + 2 ** (rows - 1))
         moves = [int(n) for n in binary[3:]]
         res = path(nums, moves)
 
