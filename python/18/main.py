@@ -38,7 +38,6 @@ def main() -> int:
             nums.append(int(num))
 
     max = 0
-    r = []
 
     for i in range(2 ** (rows - 1)):
         binary = bin(i + 2 ** (rows - 1))
@@ -47,9 +46,7 @@ def main() -> int:
 
         if sum(res) > max:
             max = sum(res)
-            r = res
 
-    print(r, sum(r))
     return max
 
 
