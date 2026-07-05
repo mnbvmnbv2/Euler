@@ -15,39 +15,36 @@ inp = """75
 04 62 98 27 23 09 70 98 73 93 38 53 60 04 23"""
 
 
-def path(nums: list[int], path: list[int]) -> list[int]:
+def path(nums: list[list[int]], path: list[int]) -> list[int]:
     result = []
     row = 1
     idx = 0
-    for move in path:
-        result.append(nums[idx])
+    for row, move in enumerate(path):
+        result.append(nums[row][idx])
         # left = + row
         # right = + row + 1
-        idx += row + move
+        idx += move
         row += 1
-    result.append(nums[idx])
+    result.append(nums[row][idx])
     return result
 
 
 def main() -> int:
     nums = []
-    rows = 0
     for row in inp.split("\n"):
-        rows += 1
-        for num in row.split(" "):
-            nums.append(int(num))
+        nums.append([int(num) for num in row.split(" ")])
 
-    max = 0
+    rows = len(nums)
+    highest = 0
 
     for i in range(2 ** (rows - 1)):
         binary = bin(i + 2 ** (rows - 1))
         moves = [int(n) for n in binary[3:]]
         res = path(nums, moves)
 
-        if sum(res) > max:
-            max = sum(res)
+        highest = max(sum(res), highest)
 
-    return max
+    return highest
 
 
 if __name__ == "__main__":
