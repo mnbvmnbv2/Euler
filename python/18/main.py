@@ -31,10 +31,9 @@ def main() -> int:
     for row in inp.split("\n"):
         nums.append([int(num) for num in row.split(" ")])
 
-    rows = len(nums)
     highest = 0
 
-    for moves in product([0, 1], repeat=rows - 1):
+    for moves in product([0, 1], repeat=len(nums) - 1):
         res = path(nums, moves)
 
         highest = max(sum(res), highest)
