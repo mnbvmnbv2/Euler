@@ -1,3 +1,5 @@
+from itertools import product
+
 inp = """75
 95 64
 17 47 82
@@ -15,7 +17,7 @@ inp = """75
 04 62 98 27 23 09 70 98 73 93 38 53 60 04 23"""
 
 
-def path(nums: list[list[int]], path: list[int]) -> list[int]:
+def path(nums: list[list[int]], path: tuple[int, ...]) -> list[int]:
     result = [nums[0][0]]
     idx = 0
     for row, move in enumerate(path):
@@ -32,9 +34,7 @@ def main() -> int:
     rows = len(nums)
     highest = 0
 
-    for i in range(2 ** (rows - 1)):
-        binary = bin(i + 2 ** (rows - 1))
-        moves = [int(n) for n in binary[3:]]
+    for moves in product([0, 1], repeat=rows - 1):
         res = path(nums, moves)
 
         highest = max(sum(res), highest)
