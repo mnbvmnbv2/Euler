@@ -16,16 +16,11 @@ inp = """75
 
 
 def path(nums: list[list[int]], path: list[int]) -> list[int]:
-    result = []
-    row = 1
+    result = [nums[0][0]]
     idx = 0
     for row, move in enumerate(path):
-        result.append(nums[row][idx])
-        # left = + row
-        # right = + row + 1
         idx += move
-        row += 1
-    result.append(nums[row][idx])
+        result.append(nums[row + 1][idx])
     return result
 
 
