@@ -27,16 +27,11 @@ def path(nums: list[list[int]], path: tuple[int, ...]) -> list[int]:
 
 
 def main() -> int:
-    nums = []
-    for row in inp.split("\n"):
-        nums.append([int(num) for num in row.split(" ")])
+    nums = [[int(num) for num in row.split()] for row in inp.splitlines()]
 
     highest = 0
-
     for moves in product([0, 1], repeat=len(nums) - 1):
-        res = path(nums, moves)
-
-        highest = max(sum(res), highest)
+        highest = max(sum(path(nums, moves)), highest)
 
     return highest
 
