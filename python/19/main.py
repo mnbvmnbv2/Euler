@@ -37,7 +37,3 @@ def main() -> int:
             day += days_in_month(year, month)
             day %= 7
     return c
-
-
-if __name__ == "__main__":
-    print(main())

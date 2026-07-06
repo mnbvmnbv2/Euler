@@ -7,7 +7,3 @@ def main() -> int:
         for year in range(1901, 2001)
         for month in range(1, 13)
     )
-
-
-if __name__ == "__main__":
-    print(main())
