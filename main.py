@@ -5,18 +5,23 @@ import timeit
 from pathlib import Path
 
 
+def task_num(root, p) -> int:
+    return int(p.relative_to(root).parts[0])
+
+
 def main():
     parser = argparse.ArgumentParser(
         description="Run scripts and optionally benchmark."
     )
     parser.add_argument("-b", "--benchmark", nargs="?", const=10, type=int)
+    parser.add_argument("-t", "--task", nargs="?", type=int)
     args = parser.parse_args()
 
     root = Path("python")
-    paths = sorted(
-        (p for p in root.rglob("*.py") if p.name != "__init__.py"),
-        key=lambda p: int(p.relative_to(root).parts[0]),
-    )
+    paths = [p for p in root.rglob("*.py") if p.name != "__init__.py"]
+    if args.task:
+        paths = [p for p in paths if task_num(root, p) == args.task]
+    paths = sorted(paths, key=lambda p: task_num(root, p))
 
     rows = []
     for path in paths:
