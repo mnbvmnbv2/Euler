@@ -15,33 +15,27 @@ months = {
 }
 
 
+def is_leap(year: int) -> bool:
+    return year % 4 == 0
+
+
+def days_in_month(year: int, month: str) -> int:
+    if month == "feb" and is_leap(year):
+        return 29
+    return months[month]
+
+
 def main() -> int:
     c = 0
-    d = 0
-
-    year = 1900
-    month = 0
-    date = 0
     day = 0
-    while year < 2001:
-        # print(year, list(months.keys())[month], date, days[day])
-        d += 1
-        date += 1
-        day += 1
-        day %= len(days)
-        date %= list(months.values())[month]
-        if date == 0:
-            month += 1
-        if month == 12:
-            month = 0
-            year += 1
-            if year % 4 != 0:
-                months["feb"] = 28
-            else:
-                months["feb"] = 29
-        if days[day] == "sun" and date == 0 and year > 1900:
+    for year in range(1900, 2001):
+        for month in months:
             # print(year, list(months.keys())[month], date, days[day])
-            c += 1
+            if days[day] == "sun" and year > 1900:
+                # print(year, list(months.keys())[month], date, days[day])
+                c += 1
+            day += days_in_month(year, month)
+            day %= 7
     return c
 
 
