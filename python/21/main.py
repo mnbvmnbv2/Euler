@@ -1,15 +1,16 @@
-def sum_of_divisors(n: int) -> int:
-    return sum(a for a in range(1, n // 2 + 1) if n % a == 0)
+def main(len: int = 10_000) -> int:
+    sums = [0] * (len + 1)
 
-
-def main() -> int:
+    for i in range(1, len // 2):
+        for j in range(i * 2, len + 1, i):
+            sums[j] += i
     ambicables = set()
     skip = set()
-    for i in range(1, 10000):
+    for i in range(1, len):
         if i in ambicables or i in skip:
             continue
-        s = sum_of_divisors(i)
-        if sum_of_divisors(s) == i and s != i:
+        s = sums[i]
+        if s < len and sums[s] == i and s != i:
             ambicables.add(i)
             ambicables.add(s)
         else:
