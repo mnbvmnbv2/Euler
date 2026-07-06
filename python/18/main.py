@@ -1,5 +1,3 @@
-from itertools import product
-
 inp = """75
 95 64
 17 47 82
@@ -17,24 +15,13 @@ inp = """75
 04 62 98 27 23 09 70 98 73 93 38 53 60 04 23"""
 
 
-def path(nums: list[list[int]], path: tuple[int, ...]) -> list[int]:
-    result = [nums[0][0]]
-    idx = 0
-    for row, move in enumerate(path):
-        idx += move
-        result.append(nums[row + 1][idx])
-    return result
-
-
 def main() -> int:
-    nums = [[int(num) for num in row.split()] for row in inp.splitlines()]
+    nums = [[int(n) for n in row.split()] for row in inp.splitlines()]
 
-    highest = 0
-    for moves in product([0, 1], repeat=len(nums) - 1):
-        highest = max(sum(path(nums, moves)), highest)
+    for r in range(len(nums) - 2, -1, -1):
+        nums[r] = [
+            nums[r][i] + max(nums[r + 1][i], nums[r + 1][i + 1])
+            for i in range(len(nums[r]))
+        ]
 
-    return highest
-
-
-if __name__ == "__main__":
-    print(main())
+    return nums[0][0]
