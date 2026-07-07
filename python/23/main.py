@@ -19,7 +19,8 @@ def main() -> int:
     for idx, i in enumerate(abundant):
         for j in range(idx, len(abundant)):
             d = i + abundant[j]
-
+            if d > 28124:
+                break
             abundant_sums.add(d)
 
     t = 0
