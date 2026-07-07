@@ -14,18 +14,13 @@ def main() -> int:
         if d > 0:
             abundant.append(i)
 
-    abundant_sums = set()
+    abundant_sums = [0] * 28125
 
     for idx, i in enumerate(abundant):
         for j in range(idx, len(abundant)):
             d = i + abundant[j]
             if d > 28124:
                 break
-            abundant_sums.add(d)
+            abundant_sums[d] = 1
 
-    t = 0
-    for i in range(28124):
-        if i not in abundant_sums:
-            t += i
-
-    return t
+    return sum(i for i in range(28124) if abundant_sums[i] == 0)
