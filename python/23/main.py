@@ -23,7 +23,3 @@ def main() -> int:
                 break
 
     return sum(i for i in range(28124) if abundant_sums[i] == 0)
-
-
-if __name__ == "__main__":
-    main()
