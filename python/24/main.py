@@ -1,8 +1,17 @@
-import itertools
+import math
 
 
 def main() -> int:
-    for i, p in enumerate(itertools.permutations(range(10), r=10)):
-        if i == 999_999:
-            return int("".join(str(a) for a in p))
-    return 1
+
+    n = 999_999
+    digits = []
+    to_pick = list(range(10))
+
+    for i in range(9, -1, -1):
+        num_pos = math.factorial(i)
+        a, n = divmod(n, num_pos)
+        picked = to_pick[a]
+        digits.append(picked)
+        to_pick.remove(picked)
+
+    return int("".join(map(str, digits)))
