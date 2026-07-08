@@ -18,7 +18,7 @@ def main() -> int:
         for j in abundant:
             if j > i:
                 break
-            if abundant_flag[j] and abundant_flag[i - j]:
+            if abundant_flag[i - j]:
                 abundant_sums[i] = 1
                 break
 
