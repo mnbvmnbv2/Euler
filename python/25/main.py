@@ -5,12 +5,7 @@ def main() -> int:
 
     limit = 10**999
 
-    while True:
-        if n % 2 == 0:
-            b = a + b
-        else:
-            a = a + b
+    while b < limit:
+        a, b = b, a + b
         n += 1
-        if a > limit or b > limit:
-            break
     return n
