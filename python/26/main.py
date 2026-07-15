@@ -1,7 +1,7 @@
 def main() -> int:
     longest = 0
     longest_idx = 0
-    for i in range(1, 1000):
+    for i in range(1000, 1, -1):
         m = 1
         n = i
         j = 0
@@ -24,4 +24,6 @@ def main() -> int:
         if leng > longest:
             longest_idx = i
             longest = leng
+        if i < longest:
+            break
     return longest_idx
