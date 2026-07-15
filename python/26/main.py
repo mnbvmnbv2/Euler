@@ -5,7 +5,7 @@ def main() -> int:
         m = 1
         rems = []
         while True:
-            whole, rem = divmod(m, i)
+            _, rem = divmod(m, i)
             m = rem * 10
             if rem in rems:
                 x = rems.index(rem)
