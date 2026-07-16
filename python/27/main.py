@@ -24,7 +24,6 @@ def main() -> int:
     # n^2+n*a+b = 2 mil ish
     primes = get_primes(2_100_000)
     primes_up_to_1000 = [idx for idx, p in enumerate(primes[:1000]) if p]
-    print(primes_up_to_1000)
 
     max_n = 0
 
@@ -34,7 +33,6 @@ def main() -> int:
         for a in range(-1000, 1000):
             n_primes = how_many_primes(a, b, primes)
             if n_primes > max_n:
-                print(n_primes, a, b)
                 max_n = n_primes
                 ans = a * b
     return ans
