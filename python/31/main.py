@@ -1,17 +1,20 @@
-# ways = []
+ways = []
 
 
 def ways_to_make(n, coins, having) -> int:
+    # print(n, coins, having)
     if n == 0:
-        # ways.append(having)
+        ways.append(having)
         return 1
-    for coin in reversed(coins):
-        if coin <= n:
-            no_choose = ways_to_make(n, [c for c in coins if c != coin], having)
-            choose = ways_to_make(n - coin, coins, having + [coin])
-            return choose + no_choose
-    return 0
+    if not coins or n < 0:
+        return 0
+    coin = coins[0]
+    choose = ways_to_make(n - coin, coins, having + [coin])
+    no_choose = ways_to_make(n, coins[1:], having)
+    return choose + no_choose
 
 
-def main(target=200) -> int:
-    return ways_to_make(200, [1, 2, 5, 10, 20, 50, 100, 200], [])
+def main() -> int:
+    # ways_to_make(10, [10, 5, 2, 1], [])
+    # print(ways)
+    return ways_to_make(200, [200, 100, 50, 20, 10, 5, 2, 1], [])
