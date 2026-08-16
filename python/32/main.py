@@ -12,6 +12,5 @@ def main() -> int:
                 break
             if all(num in string for num in nums):
                 pandigital.add(a * b)
-                print(a, b, a * b)
 
     return sum(pandigital)
