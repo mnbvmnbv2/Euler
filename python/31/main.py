@@ -1,7 +1,7 @@
 import functools
 
 
-@functools.lru_cache
+@functools.cache
 def ways_to_make(n, coins) -> int:
     if n == 0:
         return 1
