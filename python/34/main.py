@@ -7,6 +7,8 @@ def main() -> int:
         s = 0
         for i in str(a):
             s += factorial(int(i))
+            if s > a:
+                break
         if s == a:
             curious_numbers.append(a)
     return sum(curious_numbers)
